@@ -1,6 +1,7 @@
 class GithubService
-  def initialize
+  def initialize(gist_id = nil)
     @client ||= Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
+    @gist_id = gist_id
   end
 
   def get_gist_content
@@ -24,7 +25,7 @@ class GithubService
   end
 
   def gist_id
-    ENV['GITHUB_GIST_ID']
+    @gist_id || ENV['GITHUB_GIST_ID']
   end
 
   def file_name

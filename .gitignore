@@ -28,3 +28,6 @@
 
 # Ignore local env file
 .env
+
+# Ignore VCR recordings
+/test/vcrs/*
