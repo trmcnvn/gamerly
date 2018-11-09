@@ -4,7 +4,6 @@ class GithubService
   end
 
   def get_gist_content
-    gist = @client.gist(gist_id)
     href = gist[:files][file_name][:raw_url]
     HTTParty.get(href).body
   end
@@ -15,7 +14,15 @@ class GithubService
     @client.edit_gist(gist_id, { files: files })
   end
 
+  def last_updated_at
+    gist[:updated_at]
+  end
+
   private
+  def gist
+    @gist ||= @client.gist(gist_id)
+  end
+
   def gist_id
     ENV['GITHUB_GIST_ID']
   end
