@@ -12,8 +12,7 @@ namespace :jobs do
 
     # manually purge cloudflare caches instead of waiting for previous
     # data expiry
-    zone = Cloudflair.zones.first
-    Cloudflair.zone(zone.id).purge_cache.everything(true) # TODO: Selective
+    Cloudflair.zone(ENV['CLOUDFLARE_ZONE_ID']).purge_cache.everything(true) # TODO: Selective
 
     # todo: send out one_signal notification that new data is available
   end
