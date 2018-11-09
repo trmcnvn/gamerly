@@ -4,6 +4,7 @@ namespace :jobs do
     data = [ScraperService::Pcgamer].map do |service|
       service.new.to_object
     end
-    Rails.cache.write('news', data)
+    client = GithubService.new
+    client.update_gist_content(data)
   end
 end

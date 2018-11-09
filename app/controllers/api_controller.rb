@@ -1,6 +1,11 @@
 class ApiController < ApplicationController
   def index
-    news = Rails.cache.fetch('news') || {}
-    render json: news
+    data = client.get_gist_content
+    render json: data
+  end
+
+  private
+  def client
+    @client ||= GithubService.new
   end
 end

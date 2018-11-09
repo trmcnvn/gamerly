@@ -12,6 +12,7 @@ gem 'httparty'
 gem 'nokogiri'
 gem 'one_signal'
 gem 'summarize'
+gem 'octokit'
 
 # performance
 gem 'fast_blank' # Faster String#blank?
@@ -20,6 +21,7 @@ gem 'oj_mimic_json' # Hook it in place of JSON gem
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
 end
 
 group :development do
