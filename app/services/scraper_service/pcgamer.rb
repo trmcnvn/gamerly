@@ -8,7 +8,7 @@ class ScraperService
       past_time = 24.hours.ago
       articles = featured_news.push(*latest_news)
         .compact
-        .reject { |article| article[:metadata][:pubdate] > past_time }
+        .reject { |article| article[:metadata][:pubdate] < past_time }
       {
         source: SOURCE,
         category: ScraperCategories::GENERAL,
