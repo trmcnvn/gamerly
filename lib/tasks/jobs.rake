@@ -14,6 +14,9 @@ namespace :jobs do
     # data expiry
     Cloudflair.zone(ENV['CLOUDFLARE_ZONE_ID']).purge_cache.everything(true) # TODO: Selective
 
+    # request the API endpoint so we can cache at CF level
+    HTTParty.get('https://gamerly.disvelop.net/')
+
     # todo: send out one_signal notification that new data is available
   end
 end
