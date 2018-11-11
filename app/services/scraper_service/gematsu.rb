@@ -1,7 +1,7 @@
 class ScraperService
   class Gematsu < ScraperService
     SOURCE = 'Gematsu'.freeze
-    base_uri 'www.gematsu.com'
+    base_uri 'https://www.gematsu.com'
 
     def to_a
       latest_news.compact
@@ -25,18 +25,22 @@ class ScraperService
       response = fetch(href)
       return nil if response.code != 200
 
-      article_doc = Nokogiri::HTML(response.body)
-      {
-        source: SOURCE,
-        href: href,
-        image: article_doc.at_css('meta[property="og:image"]')['content'],
-        title: article_doc.at_css('#post .title').content,
-        summary: summarize(article_doc.css('#post .entry').text),
-        metadata: {
-          author: article_doc.at_css('#post .meta a[rel="author"]').content,
-          pubdate: DateTime.parse(article_doc.at_css('meta[property="article:published_time"]')['content'])
+      begin
+        article_doc = Nokogiri::HTML(response.body)
+        {
+          source: SOURCE,
+          href: href,
+          image: article_doc.at_css('meta[property="og:image"]')['content'],
+          title: article_doc.at_css('#post .title').content,
+          summary: summarize(article_doc.css('#post .entry').text),
+          metadata: {
+            author: article_doc.at_css('#post .meta a[rel="author"]').content,
+            pubdate: DateTime.parse(article_doc.at_css('meta[property="article:published_time"]')['content'])
+          }
         }
-      }
+      rescue
+        nil
+      end
     end
   end
 end

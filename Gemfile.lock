@@ -160,6 +160,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    string-similarity (2.0.1)
     summarize (1.0.3)
       rake-compiler
     thor (0.20.0)
@@ -196,6 +197,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
+  string-similarity
   summarize
   tzinfo-data
   vcr

@@ -1,7 +1,7 @@
 class ScraperService
   class Pcgamer < ScraperService
     SOURCE = 'PCGamer'.freeze
-    base_uri 'www.pcgamer.com'
+    base_uri 'https://www.pcgamer.com'
 
     def to_a
       featured_news.push(*latest_news).compact
@@ -49,18 +49,22 @@ class ScraperService
       response = fetch(href)
       return nil if response.code != 200
 
-      article_doc = Nokogiri::HTML(response.body)
-      {
-        source: SOURCE,
-        href: href,
-        image: article_doc.at_css('meta[property="og:image"]')['content'],
-        title: article_doc.at_css('meta[property="og:title"]')['content'],
-        summary: summarize(article_doc.css('#article-body p').text),
-        metadata: {
-          author: article_doc.at_css('a[itemprop="author"] > span').content,
-          pubdate: DateTime.parse(article_doc.at_css('meta[name="pub_date"]')['content'])
+      begin
+        article_doc = Nokogiri::HTML(response.body)
+        {
+          source: SOURCE,
+          href: href,
+          image: article_doc.at_css('meta[property="og:image"]')['content'],
+          title: article_doc.at_css('meta[property="og:title"]')['content'],
+          summary: summarize(article_doc.css('#article-body p').text),
+          metadata: {
+            author: article_doc.at_css('a[itemprop="author"] > span').content,
+            pubdate: DateTime.parse(article_doc.at_css('meta[name="pub_date"]')['content'])
+          }
         }
-      }
+      rescue
+        nil
+      end
     end
   end
 end

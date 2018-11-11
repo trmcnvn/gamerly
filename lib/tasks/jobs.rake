@@ -7,7 +7,11 @@ namespace :jobs do
       ScraperService::Pcgamer,
       ScraperService::Gematsu
     ].each do |service|
-      data.push(*service.new.to_a)
+      begin
+        data.push(*service.new.to_a)
+      rescue => exception
+        puts "Failed: #{service} -> #{exception}"
+      end
     end
 
     # remove articles that are > 24 hours old
@@ -16,6 +20,12 @@ namespace :jobs do
 
     # sort by pubdate
     data.sort_by! { |article| article[:metadata][:pubdate] }.reverse!
+
+    # attempt to remove duplicates by comparing title distance
+    data.reverse_each do |a|
+      match = data.any? { |x| a != x && String::Similarity.cosine(a[:title], x[:title]) > 0.9 }
+      data.delete(a) if match
+    end
 
     # upload data to our gist database
     client = GithubService.new

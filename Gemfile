@@ -14,6 +14,7 @@ gem 'one_signal'
 gem 'summarize'
 gem 'octokit'
 gem 'cloudflair'
+gem 'string-similarity'
 
 # performance
 gem 'fast_blank' # Faster String#blank?
