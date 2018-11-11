@@ -4,11 +4,7 @@ class ScraperService
     base_uri 'www.pcgamer.com'
 
     def to_object
-      # filter out the articles that are > 24 hours old
-      past_time = 24.hours.ago
-      articles = featured_news.push(*latest_news)
-        .compact
-        .reject { |article| article[:metadata][:pubdate] < past_time }
+      articles = featured_news.push(*latest_news).compact
       {
         source: SOURCE,
         category: ScraperCategories::GENERAL,

@@ -1,6 +1,5 @@
 module ScraperCategories
   GENERAL = 1
-  MOBILE = 2
 end
 
 class ScraperService
@@ -11,7 +10,7 @@ class ScraperService
   # ```
   # {
   #   "source": "PCGamer",
-  #   "category": "general",
+  #   "category": 1,
   #   "articles": [{
   #     "href": "<article link>",
   #     "image": "<article image>",
