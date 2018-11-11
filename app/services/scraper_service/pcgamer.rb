@@ -3,13 +3,8 @@ class ScraperService
     SOURCE = 'PCGamer'.freeze
     base_uri 'www.pcgamer.com'
 
-    def to_object
-      articles = featured_news.push(*latest_news).compact
-      {
-        source: SOURCE,
-        category: ScraperCategories::GENERAL,
-        articles: articles
-      }
+    def to_a
+      featured_news.push(*latest_news).compact
     end
 
     private
@@ -51,8 +46,12 @@ class ScraperService
 
       # Visit the article and build object
       href = fragment.at_css('a')['href']
-      article_doc = Nokogiri::HTML(fetch(href).body)
+      response = fetch(href)
+      return nil if response.code != 200
+
+      article_doc = Nokogiri::HTML(response.body)
       {
+        source: SOURCE,
         href: href,
         image: article_doc.at_css('meta[property="og:image"]')['content'],
         title: article_doc.at_css('meta[property="og:title"]')['content'],

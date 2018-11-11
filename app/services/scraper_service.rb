@@ -1,29 +1,22 @@
-module ScraperCategories
-  GENERAL = 1
-end
-
 class ScraperService
   include HTTParty
 
-  # Return the scraped data as a structured object.
+  # Return the scraped data as an array of structured data.
   #
   # ```
-  # {
-  #   "source": "PCGamer",
-  #   "category": 1,
-  #   "articles": [{
-  #     "href": "<article link>",
-  #     "image": "<article image>",
-  #     "title": "<article title>",
-  #     "summary": "<summarized content>",
-  #     "metadata": {
-  #       "author": "<author name>",
-  #       "pubdate": "<article published date>"
-  #     }
-  #   }, ...]
-  # }
+  # [{
+  #   "source": "<site>"
+  #   "href": "<article link>",
+  #   "image": "<article image>",
+  #   "title": "<article title>",
+  #   "summary": "<summarized content>",
+  #   "metadata": {
+  #     "author": "<author name>",
+  #     "pubdate": "<article published date>"
+  #   }
+  # }]
   # ```
-  def to_object
+  def to_a
     raise NotImplementedError
   end
 

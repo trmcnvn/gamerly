@@ -2,16 +2,20 @@ namespace :jobs do
   desc "Fetch the latest news"
   task daily_news: :environment do
     # scrape data
-    data = [
+    data = []
+    [
       ScraperService::Pcgamer,
       ScraperService::Gematsu
-    ].map do |service|
-      service.new.to_object
+    ].each do |service|
+      data.push(*service.new.to_a)
     end
 
     # remove articles that are > 24 hours old
     past_time = 24.hours.ago
-    data = data.reject { |article| article[:metadata[:pubdate] < past_time }
+    data.reject! { |article| article[:metadata][:pubdate] < past_time }
+
+    # sort by pubdate
+    data.sort_by! { |article| article[:metadata][:pubdate] }.reverse!
 
     # upload data to our gist database
     client = GithubService.new

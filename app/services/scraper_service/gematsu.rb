@@ -3,12 +3,8 @@ class ScraperService
     SOURCE = 'Gematsu'.freeze
     base_uri 'www.gematsu.com'
 
-    def to_object
-      {
-        source: SOURCE,
-        category: ScraperCategories::GENERAL,
-        articles: latest_news
-      }
+    def to_a
+      latest_news.compact
     end
 
     private
@@ -26,8 +22,12 @@ class ScraperService
 
     def parse_article(fragment)
       href = fragment.at_css('div.title > a')['href']
-      article_doc = Nokogiri::HTML(fetch(href).body)
+      response = fetch(href)
+      return nil if response.code != 200
+
+      article_doc = Nokogiri::HTML(response.body)
       {
+        source: SOURCE,
         href: href,
         image: article_doc.at_css('meta[property="og:image"]')['content'],
         title: article_doc.at_css('#post .title').content,
