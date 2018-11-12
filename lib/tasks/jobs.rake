@@ -7,11 +7,7 @@ namespace :jobs do
       ScraperService::Pcgamer,
       ScraperService::Gematsu
     ].each do |service|
-      begin
-        data.push(*service.new.to_a)
-      rescue => exception
-        puts "Failed: #{service} -> #{exception}"
-      end
+      data.push(*service.new.to_a)
     end
 
     # remove articles that are > 24 hours old
