@@ -71,8 +71,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   # config.active_record.dump_schema_after_migration = false
-
-  # Exceptions
-  config.middleware.use ExceptionNotification::Rack,
-    webhook: { url: ENV['EXCEPTION_WEBHOOK'] }
 end

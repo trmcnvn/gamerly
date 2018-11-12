@@ -15,6 +15,7 @@ gem 'summarize'
 gem 'octokit'
 gem 'cloudflair'
 gem 'string-similarity'
+gem 'slack-notifier'
 
 # performance
 gem 'fast_blank' # Faster String#blank?
