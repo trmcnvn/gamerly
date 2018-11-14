@@ -30,7 +30,7 @@ class ScraperService
     response = self.class.get(path, default_options)
     response
   end
-``
+
   def summarize(data)
     data.summarize(language: 'en', ratio: 30)
   end

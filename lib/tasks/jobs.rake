@@ -5,7 +5,9 @@ namespace :jobs do
     data = []
     [
       ScraperService::Pcgamer,
-      ScraperService::Gematsu
+      ScraperService::Gematsu,
+      ScraperService::Gamespot,
+      ScraperService::Polygon
     ].each do |service|
       data.push(*service.new.to_a)
     end
