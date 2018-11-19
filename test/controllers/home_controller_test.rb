@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApiControllerTest < ActionDispatch::IntegrationTest
+class HomeControllerTest < ActionDispatch::IntegrationTest
   test 'it returns a JSON response' do
     VCR.use_cassette('api_response', re_record_interval: 7.days) do
       get root_url

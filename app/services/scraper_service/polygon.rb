@@ -33,12 +33,13 @@ class ScraperService
 
       begin
         article_doc = Nokogiri::HTML(response.body)
+        article_doc.css('.c-entry-content > p').each { |node| node.content = "#{node.content}\n\n" }
         {
           source: SOURCE,
           href: href,
           image: article_doc.at_css('meta[property="og:image"]')['content'],
           title: article_doc.at_css('meta[property="og:title"]')['content'],
-          summary: summarize(article_doc.css('.c-entry-content').text),
+          summary: summarize(article_doc.css('.c-entry-content > p').text),
           metadata: {
             author: article_doc.at_css('.c-byline > .c-byline__item > a').content,
             pubdate: DateTime.parse(article_doc.at_css('time.c-byline__item')['datetime'])

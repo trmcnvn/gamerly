@@ -32,6 +32,6 @@ class ScraperService
   end
 
   def summarize(data)
-    data.summarize(language: 'en', ratio: 30)
+    data.summarize(language: 'en', ratio: 35)
   end
 end

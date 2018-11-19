@@ -10,12 +10,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'exception_notification'
 gem 'httparty'
 gem 'nokogiri'
-gem 'one_signal'
 gem 'summarize'
 gem 'octokit'
 gem 'cloudflair'
 gem 'string-similarity'
 gem 'slack-notifier'
+gem 'one_signal'
 
 # performance
 gem 'fast_blank' # Faster String#blank?
@@ -31,6 +31,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-rails'
 end
 
 group :test do

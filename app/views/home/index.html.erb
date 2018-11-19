@@ -1,0 +1,48 @@
+<div class="columns">
+  <div class="column is-full">
+    <% @articles.each do |article| %>
+      <div class="card article">
+        <div class="card-image">
+          <figure class="image is-16by9">
+            <img src="<%= article["image"] %>" alt="<%= article["title"] %>">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag("/services/#{article['source']}.png", alt: article["source"]) %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= article["title"] %></p>
+              <p class="subtitle is-6">
+                <%= article["metadata"]["author"] %>
+                &mdash;
+                <time datetime="<%= article["metadata"]["pubdate"] %>"><%= time_ago_in_words article["metadata"]["pubdate"] %></time>
+                ago
+              </p>
+            </div>
+          </div>
+          <div class="content">
+            <%= simple_format article["summary"] %>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="<%= article["href"] %>" class="card-footer-item" target="_blank">View full article at <%= article["source"] %></a>
+        </footer>
+      </div>
+    <% end %>
+
+    <div class="content has-text-centered has-text-grey-dark is-italic is-size-7">
+      <div class="timestamp">
+        Last updated
+        <time datetime="<%= @last_updated_at.strftime("%FT%T") %>"><%= time_ago_in_words @last_updated_at %></time>
+        ago
+      </div>
+      <div class="oss">
+        <a href="https://github.com/disvelop/gamerly" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>

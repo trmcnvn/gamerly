@@ -53,6 +53,7 @@ GEM
       faraday (~> 0.9.0)
       faraday-detailed_logger (~> 2.1)
       faraday_middleware (~> 0.10.0)
+    coderay (1.1.2)
     concurrent-ruby (1.1.3)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -109,6 +110,11 @@ GEM
     oj (3.7.0)
     oj_mimic_json (1.0.1)
     one_signal (1.2.0)
+    pry (0.12.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.7)
+      pry (>= 0.10.4)
     puma (3.12.0)
     rack (2.0.6)
     rack-test (1.1.0)
@@ -194,6 +200,7 @@ DEPENDENCIES
   oj
   oj_mimic_json
   one_signal
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
   slack-notifier

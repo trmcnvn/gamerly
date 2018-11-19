@@ -51,6 +51,7 @@ class ScraperService
 
       begin
         article_doc = Nokogiri::HTML(response.body)
+        article_doc.css('#article-body p').each { |node| node.content = "#{node.content}\n\n" }
         {
           source: SOURCE,
           href: href,
