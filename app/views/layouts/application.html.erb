@@ -4,14 +4,23 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Daily Gaming News - Gamerly</title>
-    <meta name="description" content="...">
+    <meta name="description" content="Daily gaming news summarized into a TL;DR format">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
     <style>
       .article { margin-bottom: 20px; }
     </style>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "9e016566-8d7f-420d-a263-1ae0b6b6bbcf",
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="container is-fluid">
