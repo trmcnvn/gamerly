@@ -36,6 +36,13 @@ namespace :jobs do
     # request the API endpoint so we can cache at CF level
     HTTParty.get('https://gamerly.disvelop.net/')
 
-    # todo: send out one_signal notification that new data is available
+    # send out one_signal notification that new data is available
+    OneSignal::Notification.create(params: {
+      app_id: ENV['ONE_SIGNAL_APP_ID'],
+      included_segments: ['Subscribed Users'],
+      contents: {
+        en: 'Daily gaming news has been updated. Check it out!'
+      }
+    })
   end
 end
