@@ -4,14 +4,14 @@
       <div class="card article">
         <div class="card-image">
           <figure class="image is-16by9">
-            <img src="<%= article["image"] %>" alt="<%= article["title"] %>">
+            <img class="lazyload" data-src="<%= article["image"] %>" alt="<%= article["title"] %>">
           </figure>
         </div>
         <div class="card-content">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <%= image_tag("/services/#{article['source']}.png", alt: article["source"]) %>
+                <img class="lazyload" data-src="services/<%= article["source"] %>.png" alt="<%= article["source"] %>">
               </figure>
             </div>
             <div class="media-content">
