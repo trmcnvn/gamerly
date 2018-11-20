@@ -9,14 +9,11 @@
     <link rel="canonical" href="<%= url_for(format: :html, only_path: false) %>">
     <link rel="amphtml" href="<%= url_for(format: :amp, only_path: false) %>">
     <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/bulma.css">
     <style>
-      .article { margin-bottom: 20px; }
-    </style>
-    <style>
-      .no-js img.lazyload {
-        display: none;
-      }
+      <%= raw File.read("#{Rails.root}/public/bulma-pure.css") %>
+      .article{margin-bottom:20px}
+      .subtitle{margin-top:-1.25rem}
+      .no-js img.lazyload{display:none}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/lazysizes.min.js" async></script>
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
