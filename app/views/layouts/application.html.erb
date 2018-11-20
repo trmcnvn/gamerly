@@ -6,10 +6,17 @@
     <title>Daily Gaming News - Gamerly</title>
     <meta name="description" content="Daily gaming news summarized into a TL;DR format">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="<%= url_for(format: :html, only_path: false) %>">
+    <link rel="amphtml" href="<%= url_for(format: :amp, only_path: false) %>">
     <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="/bulma.css">
     <style>
       .article { margin-bottom: 20px; }
+    </style>
+    <style>
+      .no-js img.lazyload {
+        display: none;
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/lazysizes.min.js" async></script>
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
@@ -20,6 +27,13 @@
           appId: "9e016566-8d7f-420d-a263-1ae0b6b6bbcf",
         });
       });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@content": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://gamerly.disvelop.net"
+      }
     </script>
   </head>
   <body>
