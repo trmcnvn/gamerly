@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="<%= url_for(format: :html, only_path: false) %>">
     <link rel="amphtml" href="<%= url_for(format: :amp, only_path: false) %>">
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json">
     <style>
-      <%= raw File.read("#{Rails.root}/public/bulma-pure.css") %>
+      <%= raw File.read("#{Rails.root}/public/minimal.css") %>
       .article{margin-bottom:20px}
       .subtitle{margin-top:-1.25rem}
       .no-js img.lazyload{display:none}
