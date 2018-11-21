@@ -1,14 +1,21 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
-  test 'it returns a JSON response' do
-    VCR.use_cassette('api_response', re_record_interval: 7.days) do
+  test 'it returns a HTML response' do
+    VCR.use_cassette('html_response', re_record_interval: 7.days) do
       get root_url
       assert_response :success
-      assert_equal 'application/json', @response.content_type
+      assert_equal 'text/html', @response.content_type
+      assert_select 'link[rel="amphtml"]', 1
+    end
+  end
 
-      data = JSON.parse(@response.body)
-      assert data.count > 0
+  test 'it returns the correct response for AMP' do
+    VCR.use_cassette('amp_response', re_record_interval: 7.days) do
+      get "#{root_url}?format=amp"
+      assert_response :success
+      assert_equal 'text/html', @response.content_type
+      assert_select 'script[src="https://cdn.ampproject.org/v0.js"]', 1
     end
   end
 end
