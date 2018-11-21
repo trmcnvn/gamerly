@@ -2,15 +2,16 @@ namespace :jobs do
   desc "Fetch the latest news"
   task daily_news: :environment do
     # scrape data
-    data = []
-    [
+    data = [
       ScraperService::Pcgamer,
       ScraperService::Gematsu,
       ScraperService::Gamespot,
       ScraperService::Polygon
-    ].each do |service|
-      data.push(*service.new.to_a)
+    ].map do |service|
+      service.new.to_a rescue nil
     end
+    data.compact!
+    data.flatten!
 
     # remove articles that are > 24 hours old
     past_time = 24.hours.ago
@@ -32,6 +33,14 @@ namespace :jobs do
     # manually purge cloudflare caches instead of waiting for previous
     # data expiry
     Cloudflair.zone(ENV['CLOUDFLARE_ZONE_ID']).purge_cache.everything(true) # TODO: Selective
+  end
+
+  desc "Warm the cache and send out notification"
+  task notify_users: :environment do
+    # Don't notify if the database wasn't updated recently.
+    client = GithubService.new
+    last_updated_at = client.last_updated_at
+    return unless last_updated_at > 2.hours.ago
 
     # request the API endpoint so we can cache at CF level
     HTTParty.get('https://gamerly.disvelop.net/')

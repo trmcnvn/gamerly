@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.1'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'exception_notification'
+gem 'exception_notification-rake'
 gem 'httparty'
 gem 'nokogiri'
 gem 'summarize'

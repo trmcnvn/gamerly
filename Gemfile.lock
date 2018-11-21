@@ -68,6 +68,9 @@ GEM
     exception_notification (4.2.2)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
+    exception_notification-rake (0.3.0)
+      exception_notification (~> 4.2.0)
+      rake (>= 0.9.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday-detailed_logger (2.1.2)
@@ -192,6 +195,7 @@ DEPENDENCIES
   cloudflair
   dotenv-rails
   exception_notification
+  exception_notification-rake
   fast_blank
   httparty
   listen (>= 3.0.5, < 3.2)
