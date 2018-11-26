@@ -31,7 +31,9 @@ class ScraperService
     response
   end
 
-  def summarize(data)
-    data.summarize(language: 'en', ratio: 35)
+  def summarize(text)
+    docs = [Epitome::Document.new(text)]
+    corpus = Epitome::Corpus.new(docs)
+    corpus.summary(7)
   end
 end

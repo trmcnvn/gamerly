@@ -11,12 +11,12 @@ gem 'exception_notification'
 gem 'exception_notification-rake'
 gem 'httparty'
 gem 'nokogiri'
-gem 'summarize'
 gem 'octokit'
 gem 'cloudflair'
 gem 'string-similarity'
 gem 'slack-notifier'
 gem 'one_signal'
+gem 'epitome'
 
 # performance
 gem 'fast_blank' # Faster String#blank?
