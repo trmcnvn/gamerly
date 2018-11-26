@@ -21,8 +21,9 @@
               <p class="subtitle is-6">
                 <%= article["metadata"]["author"] %>
                 &mdash;
-                <time datetime="<%= article["metadata"]["pubdate"] %>"><%= time_ago_in_words article["metadata"]["pubdate"] %></time>
-                ago
+                <time datetime="<%= article["metadata"]["pubdate"] %>">
+                  <%= DateTime.parse(article["metadata"]["pubdate"]).to_formatted_s(:long_ordinal) %>
+                </time>
               </p>
             </div>
           </div>
