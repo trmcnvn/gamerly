@@ -17,6 +17,9 @@ namespace :jobs do
     past_time = 24.hours.ago
     data.reject! { |article| article[:metadata][:pubdate] < past_time }
 
+    # remove articles with short text
+    data.reject! { |article| article[:summary].split(' ').length < 50 }
+
     # sort by pubdate
     data.sort_by! { |article| article[:metadata][:pubdate] }.reverse!
 

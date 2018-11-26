@@ -27,7 +27,7 @@ class ScraperService
     def parse_article(fragment)
       href = fragment.at_css('a')['href']
       # We don't want video, review, or guide articles.
-      return nil if href =~ /www.polygon.com\/(videos|reviews|guides)/
+      return nil if href =~ /www.polygon.com\/(videos|reviews|guides|deals|.*deals)/
       response = fetch(href)
       return nil if response.code != 200
 
