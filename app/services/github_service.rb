@@ -19,7 +19,7 @@ class GithubService
   end
 
   def last_updated_at
-    @gist[:updated_at]
+    @gist[:updated_at] || Time.now
   end
 
   private

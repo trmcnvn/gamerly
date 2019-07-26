@@ -33,21 +33,12 @@ namespace :jobs do
     client = GithubService.new
     client.update_gist_content(data)
 
-    # manually purge cloudflare caches instead of waiting for previous
-    # data expiry
-    Cloudflair.zone(ENV['CLOUDFLARE_ZONE_ID']).purge_cache.everything(true) # TODO: Selective
+    # add to rails cache
+    Rails.cache.write('gamerly_content', { articles: data, updated_at: client.last_updated_at })
   end
 
-  desc "Warm the cache and send out notification"
+  desc "Send out notification"
   task notify_users: :environment do
-    # Don't notify if the database wasn't updated recently.
-    client = GithubService.new
-    last_updated_at = client.last_updated_at
-    return unless last_updated_at > 2.hours.ago
-
-    # request the API endpoint so we can cache at CF level
-    HTTParty.get('https://gamerly.disvelop.net/')
-
     # send out one_signal notification that new data is available
     OneSignal::Notification.create(params: {
       app_id: ENV['ONE_SIGNAL_APP_ID'],

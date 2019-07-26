@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column is-full">
-    <% @articles.each do |article| %>
+    <% @content[:articles].each do |article| %>
       <div class="card article">
         <div class="card-image">
           <figure class="image is-16by9">
@@ -40,10 +40,10 @@
     <div class="content has-text-centered has-text-grey-dark is-italic is-size-7">
       <div class="timestamp">
         Last updated
-        <time datetime="<%= @last_updated_at.strftime("%FT%T") %>"><%= @last_updated_at %></time>
+        <time datetime="<%= @content[:updated_at].strftime("%FT%T") %>"><%= @content[:updated_at] %></time>
       </div>
       <div class="oss">
-        <a href="https://github.com/disvelop/gamerly" target="_blank">GitHub</a>
+        <a href="https://github.com/trmcnvn/gamerly" target="_blank">GitHub</a>
       </div>
     </div>
   </div>

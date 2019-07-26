@@ -1,22 +1,20 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.3'
 
 # general
-gem 'rails', '~> 5.2.1'
-gem 'puma', '~> 3.11'
+gem 'rails'
+gem 'puma'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'exception_notification'
-gem 'exception_notification-rake'
 gem 'httparty'
 gem 'nokogiri'
 gem 'octokit'
-gem 'cloudflair'
 gem 'string-similarity'
-gem 'slack-notifier'
 gem 'one_signal'
 gem 'epitome'
+gem 'redis'
+gem 'hiredis'
 
 # performance
 gem 'fast_blank' # Faster String#blank?

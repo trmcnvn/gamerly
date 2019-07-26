@@ -9,7 +9,7 @@ class ScraperService
 
     private
     def document
-      @document ||= Nokogiri::HTML(fetch('/news/pc').body)
+      @document ||= Nokogiri::HTML(fetch('/news/pc/').body)
     end
 
     def content
