@@ -30,7 +30,7 @@ class ScraperService
         article_doc.css('section.article-body .js-content-entity-body > p').each { |node| node.content = "#{node.content}\n\n" }
         {
           source: SOURCE,
-          href: href,
+          href: "https://www.gamespot.com#{href}",
           image: article_doc.at_css('meta[property="og:image"]')['content'],
           title: article_doc.at_css('meta[property="og:title"]')['content'],
           summary: summarize(article_doc.css('section.article-body .js-content-entity-body > p').text),

@@ -4,33 +4,33 @@
       <div class="card article">
         <div class="card-image">
           <figure class="image is-16by9">
-            <amp-img src="<%= article["image"] %>" alt="<%= article["title"] %>" layout="fill"></amp-img>
+            <amp-img src="<%= article[:image] %>" alt="<%= article[:title] %>" layout="fill"></amp-img>
           </figure>
         </div>
         <div class="card-content">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <amp-img src="services/<%= article["source"] %>.png" alt="<%= article["source"] %>" layout="fill"></amp-img>
+                <amp-img src="services/<%= article[:source] %>.png" alt="<%= article[:source] %>" layout="fill"></amp-img>
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= article["title"] %></p>
+              <p class="title is-4"><%= article[:title] %></p>
               <p class="subtitle is-6">
-                <%= article["metadata"]["author"] %>
+                <%= article[:metadata][:author] %>
                 &mdash;
-                <time datetime="<%= article["metadata"]["pubdate"] %>">
-                  <%= DateTime.parse(article["metadata"]["pubdate"]).to_formatted_s(:long_ordinal) %>
+                <time datetime="<%= article[:metadata][:pubdate] %>">
+                  <%= article[:metadata][:pubdate].to_formatted_s(:long_ordinal) %>
                 </time>
               </p>
             </div>
           </div>
           <div class="content">
-            <%= simple_format article["summary"] %>
+            <%= simple_format article[:summary] %>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="<%= article["href"] %>" class="card-footer-item" target="_blank">View full article at <%= article["source"] %></a>
+          <a href="<%= article[:href] %>" class="card-footer-item" target="_blank">View full article at <%= article[:source] %></a>
         </footer>
       </div>
     <% end %>
