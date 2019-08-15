@@ -20,3 +20,7 @@ jobs:
           gem install bundler --no-document
           bundle install --jobs 4 --retry 3
       - run: bin/rails test
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_GIST_ID: 37cc5eb85a404b8681de9b9b6a3dc3f1
+          GITHUB_FILENAME: database.json
