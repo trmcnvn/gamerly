@@ -16,4 +16,4 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6.x'
-      - runs: bin/rails test
+      - run: bin/rails test
