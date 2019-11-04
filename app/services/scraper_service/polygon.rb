@@ -17,7 +17,7 @@ class ScraperService
     end
 
     def featured_news
-      content.css('.l-hero .c-entry-box--compact--hero').map { |article| parse_article(article) }
+      content.css('.l-hero .c-entry-box-hero').map { |article| parse_article(article) }
     end
 
     def latest_news
@@ -27,7 +27,7 @@ class ScraperService
     def parse_article(fragment)
       href = fragment.at_css('a')['href']
       # We don't want video, review, or guide articles.
-      return nil if href =~ /www.polygon.com\/(videos|reviews|guides|deals|.*deals)/
+      return nil if href =~ /www.polygon.com\/(videos|reviews|guides|deals|.*deals|.*guide)/
       response = fetch(href)
       return nil if response.code != 200
 
@@ -41,7 +41,7 @@ class ScraperService
           title: article_doc.at_css('meta[property="og:title"]')['content'],
           summary: summarize(article_doc.css('.c-entry-content > p').text),
           metadata: {
-            author: article_doc.at_css('.c-byline > .c-byline__item > a').content,
+            author: article_doc.at_css('.c-byline .c-byline__item > a').content,
             pubdate: DateTime.parse(article_doc.at_css('time.c-byline__item')['datetime'])
           }
         }
