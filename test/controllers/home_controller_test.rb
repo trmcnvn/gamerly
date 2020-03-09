@@ -5,7 +5,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     VCR.use_cassette('html_response', re_record_interval: 7.days) do
       get root_url
       assert_response :success
-      assert_equal 'text/html', @response.content_type
+      assert_equal 'text/html', @response.media_type
       assert_select 'link[rel="amphtml"]', 1
     end
   end
@@ -14,7 +14,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     VCR.use_cassette('amp_response', re_record_interval: 7.days) do
       get "#{root_url}?format=amp"
       assert_response :success
-      assert_equal 'text/html', @response.content_type
+      assert_equal 'text/html', @response.media_type
       assert_select 'script[src="https://cdn.ampproject.org/v0.js"]', 1
     end
   end

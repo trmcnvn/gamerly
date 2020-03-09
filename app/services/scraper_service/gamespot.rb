@@ -13,15 +13,15 @@ class ScraperService
     end
 
     def content
-      @content ||= document.at_css('#river')
+      @content ||= document.at_css('.river')
     end
 
     def latest_news
-      content.css('article.media-article').map { |article| parse_article(article) }
+      content.css('.horizontal-card-item').map { |article| parse_article(article) }
     end
 
     def parse_article(fragment)
-      href = fragment.at_css('> a')['href']
+      href = fragment.at_css('.horizontal-card-item__link')['href']
       response = fetch(href)
       return nil if response.code != 200
 
